@@ -8,6 +8,8 @@ import { CURRENT_USER } from "@/data/seed";
 import { cn } from "@/lib/utils";
 import { useCloseout } from "@/state/closeout";
 
+const CTA_EMAIL = "emailgregp@gmail.com";
+
 const NAV = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
   { to: "/sources", label: "Sources", icon: Database },
@@ -139,13 +141,22 @@ export function AppShell({ children }: { children?: ReactNode }) {
       </div>
 
       <main className="lg:pl-[240px]">
-        <div className="mx-auto w-full max-w-[1440px] px-4 pb-24 pt-6 sm:px-6 lg:px-8 lg:pt-7">{children ?? <Outlet />}</div>
+        <div className="mx-auto w-full max-w-[1440px] px-4 pb-40 pt-6 sm:pb-32 sm:px-6 lg:px-8 lg:pt-7">{children ?? <Outlet />}</div>
       </main>
 
       {/* Opaque footer strip: the hosting badge is pinned to the bottom-right corner, so page content scrolls
           behind this strip instead of under the badge. */}
-      <footer className="fixed inset-x-0 bottom-0 z-20 flex h-16 items-center border-t border-line bg-paper px-4 text-xs text-muted-foreground sm:px-6 lg:left-[240px] lg:px-8">
-        Closeout Gate · Demo environment • Synthetic sample data
+      <footer className="fixed inset-x-0 bottom-0 z-20 flex min-h-16 flex-col justify-center gap-1 border-t border-line bg-paper px-4 py-2 text-xs text-muted-foreground sm:px-6 lg:left-[240px] lg:px-8">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pr-24">
+          <span className="font-medium text-foreground">Running a daily production report? Get Closeout Gate on your real data.</span>
+          <a className="btn-primary" href={`mailto:${CTA_EMAIL}?subject=${encodeURIComponent("Closeout Gate pilot request")}`}>
+            Request a pilot
+          </a>
+          <a className="btn-secondary" href={`mailto:${CTA_EMAIL}?subject=${encodeURIComponent("Closeout Gate 15-minute walkthrough")}`}>
+            Book a 15-min walkthrough
+          </a>
+        </div>
+        <span>Closeout Gate · Demo environment • Synthetic sample data</span>
       </footer>
     </div>
   );
